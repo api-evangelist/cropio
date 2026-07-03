@@ -1,0 +1,169 @@
+aid: cropio
+url: https://raw.githubusercontent.com/api-evangelist/cropio/refs/heads/main/apis.yml
+name: Cropio
+kind: company
+description: Cropio was an independent Eastern European farm management and precision
+  agriculture platform (fields, satellite/NDVI imagery, weather, scouting, machinery
+  telematics, and yield) founded in 2013. Syngenta acquired Cropio in September 2019
+  and folded it into its Cropwise digital agriculture portfolio; the product now
+  operates as Cropwise Operations, and cropio.com redirects to
+  operations.cropwise.com. The original Cropio API v3 was not shut down - it
+  continues to run as the documented Cropwise Operations Platform API v3, reachable
+  at operations.cropwise.com/api/v3 (the legacy cropio.com/api/v3 host has redirected
+  there since April 1, 2022). It is a per-account HTTP JSON REST API (not a
+  self-serve developer marketplace) - a Cropwise Operations login is required to
+  obtain a USER_API_TOKEN, and there is no published self-signup API key flow or
+  API-specific price list. Syngenta separately launched a broader "Cropwise Open
+  Platform" for partners in 2025, which is a distinct, newer developer program
+  outside the scope of this entry.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Agriculture
+- AgTech
+- Precision Agriculture
+- Farm Management
+- Satellite Imagery
+- NDVI
+- Weather
+- Telematics
+- Syngenta
+- Cropwise
+created: '2026-07-03'
+modified: '2026-07-03'
+specificationVersion: '0.19'
+apis:
+- aid: cropio:cropio-fields-api
+  name: Cropio Fields API
+  tags:
+  - Fields
+  - Field Shapes
+  - Land Parcels
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://cropwiseoperations.docs.apiary.io/
+  baseURL: https://operations.cropwise.com/api/v3
+  properties:
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: APIReference
+  - url: https://github.com/cropio/cropio-ruby
+    type: SDK
+  description: Create, list, get, update, and delete fields, field groups, field
+    shapes (boundaries in multiple geo formats), and land parcels. Fields carry
+    calculated/legal/tillable area, administrative location, and relations to
+    crops, scouting reports, satellite images, and machine tasks.
+- aid: cropio:cropio-crops-api
+  name: Cropio Crops API
+  tags:
+  - Crops
+  - Seasons
+  - Production Cycles
+  - Growth Stages
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://cropwiseoperations.docs.apiary.io/
+  baseURL: https://operations.cropwise.com/api/v3
+  properties:
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: APIReference
+  description: Manage crops (name, season type, base crop, color scheme), seasons
+    (year, start/end date), production cycles, and growth stage / growth scale
+    tracking used to plan and record what is planted on a field across a season.
+- aid: cropio:cropio-satellite-imagery-api
+  name: Cropio Satellite Imagery API
+  tags:
+  - Satellite Imagery
+  - NDVI
+  - Remote Sensing
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://cropwiseoperations.docs.apiary.io/
+  baseURL: https://operations.cropwise.com/api/v3
+  properties:
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: APIReference
+  description: Read-only access to per-field and per-field-group satellite images -
+    capture date, source satellite, cloud/cirrus/data coverage, and min/max/mean
+    NDVI values - plus NDVI grid data for zoning and vegetation-health analysis.
+- aid: cropio:cropio-weather-api
+  name: Cropio Weather API
+  tags:
+  - Weather
+  - Weather Stations
+  - Forecast
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://cropwiseoperations.docs.apiary.io/
+  baseURL: https://operations.cropwise.com/api/v3
+  properties:
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: APIReference
+  description: Read-only weather station data (real and virtual stations) keyed
+    by geoposition, including a rolling 24-hour hourly current_weather array
+    (precipitation, air temperature, and related measurements) and historical
+    weather items.
+- aid: cropio:cropio-scouting-and-tasks-api
+  name: Cropio Scouting & Tasks API
+  tags:
+  - Scouting
+  - Tasks
+  - Field Scout Reports
+  - Plant Threats
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://cropwiseoperations.docs.apiary.io/
+  baseURL: https://operations.cropwise.com/api/v3
+  properties:
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: APIReference
+  description: Create and manage scouting tasks and manual tasks assigned to a
+    field and a responsible user, plus the field scout reports, scout report
+    points, and plant threat findings recorded against them, and agri-work plans
+    used to schedule field operations.
+- aid: cropio:cropio-machinery-telematics-api
+  name: Cropio Machinery & Telematics API
+  tags:
+  - Machinery
+  - Telematics
+  - GPS
+  - Machine Tasks
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://cropwiseoperations.docs.apiary.io/
+  baseURL: https://operations.cropwise.com/api/v3
+  properties:
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: APIReference
+  - url: https://github.com/cropio/cropio-powerbi
+    type: SDK
+  description: Manage machines, implements, and machine tasks (driver, work type,
+    field, start/end time), plus GPS logger data - raw and hourly-aggregated
+    positions, speed, and distance per machine - polled over HTTP with a required
+    date/time filter. Marked "testing stage" by Cropio in the source docs.
+- aid: cropio:cropio-yield-and-harvest-api
+  name: Cropio Yield & Harvest API
+  tags:
+  - Yield
+  - Harvest
+  - Productivity Estimate
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://cropwiseoperations.docs.apiary.io/
+  baseURL: https://operations.cropwise.com/api/v3
+  properties:
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: APIReference
+  description: Read and write yield maps (per-field moisture/yield/applied property
+    maps tied to a field work result), harvest weighings and transportations, and
+    productivity/yield estimates and their history, used to close the loop from
+    field work back to harvest results.
+common:
+- type: GitHubOrganization
+  url: https://github.com/cropio
+- type: LinkedIn
+  url: https://www.linkedin.com/company/cropio
+- type: Website
+  url: https://operations.cropwise.com
+- type: Documentation
+  url: https://cropwiseoperations.docs.apiary.io/
+- type: Plans
+  url: plans/cropio-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/cropio-rate-limits.yml
+- type: FinOps
+  url: finops/cropio-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

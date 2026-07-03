@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Cropio
+providerId: cropio
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Agriculture
+- AgTech
+- Precision Agriculture
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Cropio (Cropwise Operations) spend. There is no separate API
+  bill - the API is included with a Cropwise Operations subscription, which is
+  licensed per account, historically on a per-user, per-year basis with a
+  managed-area (hectare) allowance per company (see the `area_limit` field on
+  the Company API resource). Cropio itself was absorbed into Syngenta in 2019;
+  invoicing, if applicable, would come from Syngenta / Cropwise, not a
+  standalone "Cropio" entity. No public FOCUS-aligned rate card is published.
+notes: >-
+  Cost drivers are the subscription tier (user seats, managed hectares, and
+  which modules - satellite/NDVI, weather, telematics, scouting - are included)
+  rather than API call volume. Verify current invoicing structure directly with
+  Cropwise/Syngenta sales, since public per-unit rates are not reconciled here.
+sources:
+- https://operations.cropwise.com/
+- https://cropwiseoperations.docs.apiary.io/
+- https://www.syngenta.com/media/media-releases/2019/syngenta-acquires-cropio
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Syngenta (Cropwise Operations, formerly Cropio)
+serviceCategory: Agriculture Technology and Farm Management
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Cropwise Operations
+  ServiceCategory: Agriculture Technology and Farm Management
+  ProviderName: Cropio
+  PublisherName: Syngenta
+  InvoiceIssuerName: Syngenta
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: subscribed_users
+  description: Licensed user seats on a Cropwise Operations company account.
+  unit: users
+  aggregation: max
+  dimensions:
+  - account
+- name: managed_hectares
+  description: Managed area allowance per company account (area_limit).
+  unit: hectares
+  aggregation: max
+  dimensions:
+  - account
+- name: satellite_imagery_module
+  description: Optional satellite/NDVI imagery module, if separately licensed.
+  unit: fields
+  aggregation: sum
+  dimensions:
+  - account
+- name: telematics_module
+  description: Optional machinery/telematics (GPS) module, if separately licensed.
+  unit: machines
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track licensed user seats and the managed-hectare allowance per company account against actual field/farm size under management.
+- name: Allocation
+  description: Map Cropwise Operations subscription cost to the farms/business units whose fields, crops, and machinery are tracked in the account.
+- name: Optimization
+  description: Right-size user seats and confirm which optional modules (satellite/NDVI, weather, telematics) are actually in use before renewal.
+- name: Accountability
+  description: Assign an account owner to review the annual Cropwise Operations subscription and confirm the managed-area allowance still matches farmed acreage.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

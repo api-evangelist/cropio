@@ -1,0 +1,74 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Cropio
+providerId: cropio
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Agriculture
+- AgTech
+- Precision Agriculture
+- Rate Limiting
+- Quotas
+description: >-
+  Cropio (Cropwise Operations Platform API v3) does not publish any numeric
+  per-minute, per-hour, or per-day request rate limit in its documentation. The
+  documented HTTP response codes cover 200/201/204/400/401/403/404/422/503 -
+  there is no 429 Too Many Requests code documented and no throttling policy
+  described anywhere in the Apiary reference. The main documented control on
+  response size is a per-resource pagination limit (`limit`/`from_id` query
+  parameters), not a request-rate limit.
+notes: >-
+  Absence of a documented numeric rate limit does not necessarily mean requests
+  are unbounded - it means Cropio/Syngenta has not published one. Treat this as
+  unverified and confirm current throttling behavior (if any) with Cropwise
+  support before building high-volume integrations, especially against the
+  GPS/telematics endpoints, which are explicitly marked "testing stage."
+sources:
+- https://cropwiseoperations.docs.apiary.io/
+- https://cropioapiv3.docs.apiary.io/
+responseCodes:
+  throttled: not documented
+limits:
+- name: Resource Collection Page Size
+  scope: endpoint
+  metric: records
+  limit: mostly 1000 records per request (per-resource default/maximum)
+  notes: >-
+    Controlled via the `limit` and `from_id` query parameters on
+    `GET /api/v3/{resource}`; requesting more than the resource's maximum
+    silently falls back to that maximum.
+- name: API Request Rate
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No documented per-minute/hour/day request-rate limit for any endpoint.
+- name: GPS/Telematics Query Window
+  scope: endpoint
+  metric: requests
+  limit: requires explicit date_at (or from_time/to_time) and machine_ids filters
+  notes: >-
+    GpsLoggerDataItems and GpsAggregatedData require a date/time filter on
+    every call (open-ended queries are not permitted); this bounds response
+    size rather than request rate. Marked "Testing stage, may be changed."
+policies:
+- name: Pagination via limit/from_id
+  description: >-
+    List endpoints return `data` plus a `meta.response` block with
+    `obtained_records`, `first_record_id`, and `last_record_id`, used to page
+    through large collections with repeated `from_id` requests.
+- name: Changes/Changes Ids Polling
+  description: >-
+    Most resources expose `GET /{resource}/changes` and `/changes_ids` with
+    `from_time`/`to_time` filters, intended as the documented pattern for
+    polling for incremental updates rather than re-fetching full collections.
+- name: Service Maintenance
+  description: >-
+    A documented 503 Service Unavailable response indicates scheduled platform
+    maintenance; clients are told to retry later, implying no formal SLA on
+    availability during maintenance windows.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

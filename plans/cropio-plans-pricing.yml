@@ -1,0 +1,117 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Cropio
+providerId: cropio
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Agriculture
+- AgTech
+- Precision Agriculture
+- Farm Management
+- Plans
+description: >-
+  Cropio (now Cropwise Operations) does not sell API access as its own product -
+  the API rides along with a Cropwise Operations account. The product is licensed
+  as a farm-management subscription, historically described (per third-party
+  software directories such as Capterra) as a free trial plus paid per-user
+  subscription tiers, with each account also carrying a managed hectare
+  (`area_limit`) allowance exposed read-only on the Company API resource.
+  Syngenta/Cropwise does not publish a detailed public rate card for Cropwise
+  Operations; pricing is quoted per account by sales based on farm size, region,
+  and modules (satellite/NDVI, telematics, scouting) enabled. There is no
+  separate, publicly listed price for the API itself.
+notes: >-
+  Third-party listing sites show a nominal "starting price" and a free trial for
+  Cropwise Operations, but Cropio/Syngenta does not publish an authoritative rate
+  card, so specific tier prices below are marked unreconciled. The 2025 "Cropwise
+  Open Platform" partner program is a separate initiative with its own,
+  undocumented commercial terms and is out of scope here.
+sources:
+- https://operations.cropwise.com/
+- https://cropwiseoperations.docs.apiary.io/
+- https://www.capterra.com/p/133659/Cropio/
+plans:
+- id: cropio-free-trial
+  name: Free Trial
+  type: free
+  description: >-
+    Time-limited free trial of the Cropwise Operations platform (and, by
+    extension, the API for an account created during the trial), used for
+    evaluation before a paid subscription.
+  entries:
+  - label: Trial Period
+    name: trial_period
+    type: flat
+    metric: days
+    limit: -1
+    timeFrame: once
+    geo: global
+    unit: 1
+    price: free (limited-time trial)
+    userMultiplied: false
+  elements:
+  - name: Core Farm Management Features
+  - name: API Access for Trial Account
+- id: cropio-subscription
+  name: Cropwise Operations Subscription
+  type: paid
+  description: >-
+    Paid, per-account subscription to Cropwise Operations. Historically billed
+    per user per year with an associated managed-area (hectare) allowance per
+    company account (see `area_limit` on the Company API resource); exact
+    published rates are not reconciled here.
+  entries:
+  - label: Per-User Subscription
+    name: per_user_subscription
+    type: flat
+    metric: users
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales / third-party listings cite a nominal per-user annual price
+    userMultiplied: true
+  - label: Managed Area Allowance
+    name: managed_area_allowance
+    type: usage
+    metric: hectares
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: included per company plan tier (see area_limit on Company resource)
+    userMultiplied: false
+  elements:
+  - name: Fields, Crops, and Seasons Management
+  - name: Satellite / NDVI Imagery
+  - name: Weather Stations
+  - name: Scouting and Task Management
+  - name: Full REST API Access (USER_API_TOKEN)
+- id: cropio-enterprise
+  name: Enterprise / Large Operation
+  type: enterprise
+  description: >-
+    Custom terms for larger operations, agribusinesses, and integrators needing
+    higher managed-area limits, machinery/telematics modules, and support -
+    negotiated directly with Syngenta/Cropwise sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Managed-Area Limits
+  - name: Machinery and Telematics Module
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

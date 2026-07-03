@@ -1,0 +1,144 @@
+aid: cropio
+name: Cropio
+review:
+  question: Does Cropio expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  operatingStatus: >-
+    Cropio was acquired by Syngenta in September 2019 and no longer exists as an
+    independent company. cropio.com now 302-redirects to operations.cropwise.com,
+    where the same underlying product operates as Cropwise Operations. The API
+    lineage was not discontinued: Cropio API v3 continues to run, documented as
+    the Cropwise Operations Platform API v3, at operations.cropwise.com/api/v3
+    (the legacy cropio.com/api/v3 host redirected there starting April 1, 2022).
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Cropio's (Cropwise Operations') own public
+    API is documented end-to-end as a request/response HTTP JSON REST API on
+    Apiary (API Blueprint format) - there is no server-push transport (WebSocket
+    or SSE) described anywhere in the 200+ resource groups reviewed. Even the
+    machine GPS/telematics resources (GpsLoggerDataItems, GpsAggregatedData),
+    which are the closest thing to a "live" data feed, are explicitly documented
+    as HTTP GET endpoints requiring a date/time filter - i.e. client-initiated
+    polling, not push.
+  findings:
+    summary: |
+      Cropio (now Cropwise Operations) does not publish a documented public
+      WebSocket API. Its API is a single HTTP JSON REST API, base
+      https://operations.cropwise.com/api/v3, authenticated with a per-account
+      USER_API_TOKEN sent either as an X-User-Api-Token header or a
+      user_api_token query parameter. The token is obtained by POSTing
+      credentials (email/password) to /sign_in - there is no self-serve
+      developer signup/API-key flow. The documentation (Cropwise Operations
+      Platform API v3 on Apiary, formerly published as the Cropio API) covers
+      over 200 resource groups - Fields, Crops, Seasons, SatelliteImages,
+      NdviGrid, WeatherStations, ScoutingTasks, FieldScoutReport, Machine,
+      MachineTask, GpsLoggerDataItems, GpsAggregatedData, YieldMaps,
+      HarvestWeighings, and many more - almost all following the same
+      generic REST pattern (GET collection, GET /ids, GET /count, GET /{id},
+      POST create, PUT update, DELETE, GET /changes, GET /changes_ids, and a
+      bulk POST /agri_works/mass_request). No WebSocket (ws:// or wss://)
+      endpoint, Server-Sent Events stream, or webhook/push-callback mechanism
+      is documented anywhere in the reference.
+    openSource: |
+      Cropio is not open source. Syngenta publishes several small open-source
+      client libraries/integration examples under the github.com/cropio
+      organization (cropio-ruby, cropio-1c, cropio-powerbi) that wrap the
+      hosted REST API; the API service itself is closed and proprietary,
+      accessible only to Cropwise Operations account holders.
+    accessModel: |
+      Access requires an existing Cropwise Operations account (a farm/company
+      account created through the product, not a standalone developer
+      account). There is no published API-only pricing tier, no public API
+      key self-signup form, and no numeric rate limit published anywhere in
+      the documentation reviewed.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://operations.cropwise.com/api/v3
+      documented: true
+      note: >-
+        The entire Cropio/Cropwise Operations API surface - all 200+ resource
+        groups - is request/response HTTP JSON REST. Legacy host
+        https://cropio.com/api/v3 redirects here (since 2022-04-01).
+    - protocol: HTTP Pull
+      scheme: https
+      documented: true
+      note: >-
+        GPS/telematics data (GpsLoggerDataItems, GpsAggregatedData,
+        Machine GpsAggregatedData) is retrieved via required-filter GET
+        requests (date_at or from_time/to_time plus machine_ids) - polling,
+        not a push/live feed. Explicitly marked "Testing stage, may be
+        changed" in the source docs.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >-
+        No WebSocket endpoint is documented anywhere in the Cropio /
+        Cropwise Operations Platform API v3 reference as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://operations.cropwise.com/api/v3/sign_in
+    - GET    https://operations.cropwise.com/api/v3/company
+    - GET    https://operations.cropwise.com/api/v3/fields
+    - GET    https://operations.cropwise.com/api/v3/fields/{id}
+    - POST   https://operations.cropwise.com/api/v3/fields
+    - PUT    https://operations.cropwise.com/api/v3/fields/{id}
+    - DELETE https://operations.cropwise.com/api/v3/fields/{id}
+    - GET    https://operations.cropwise.com/api/v3/fields/changes
+    - GET    https://operations.cropwise.com/api/v3/crops
+    - GET    https://operations.cropwise.com/api/v3/seasons
+    - GET    https://operations.cropwise.com/api/v3/satellite_images
+    - GET    https://operations.cropwise.com/api/v3/weather_stations
+    - GET    https://operations.cropwise.com/api/v3/weather_stations/{id}
+    - GET    https://operations.cropwise.com/api/v3/scouting_tasks
+    - POST   https://operations.cropwise.com/api/v3/scouting_tasks
+    - GET    https://operations.cropwise.com/api/v3/machines
+    - GET    https://operations.cropwise.com/api/v3/machine_tasks
+    - POST   https://operations.cropwise.com/api/v3/machine_tasks
+    - GET    https://operations.cropwise.com/api/v3/gps_logger_data_items?date_at={date}
+    - GET    https://operations.cropwise.com/api/v3/gps_aggregated_data?date_at={date}
+    - GET    https://operations.cropwise.com/api/v3/yield_maps
+    - GET    https://operations.cropwise.com/api/v3/harvest_weighings
+    - POST   https://operations.cropwise.com/api/v3/agri_works/mass_request
+sources:
+  - url: https://cropio.com
+    type: Website
+    note: >-
+      Confirmed 302 redirect from the legacy Cropio domain to
+      https://operations.cropwise.com/ (checked on review date).
+  - url: https://cropwiseoperations.docs.apiary.io/
+    type: Documentation
+    note: >-
+      Current, active API Blueprint documentation for the Cropwise Operations
+      Platform API v3 (the continuation of the Cropio API); 200+ resource
+      groups reviewed via the underlying Apiary JSON reference export.
+  - url: https://cropioapiv3.docs.apiary.io/
+    type: Documentation
+    note: >-
+      Legacy Cropio API v3 Apiary page; now points readers to the
+      cropwiseoperations.docs.apiary.io documentation above.
+  - url: https://www.syngenta.com/media/media-releases/2019/syngenta-acquires-cropio
+    type: PressRelease
+    note: Confirms Syngenta's September 2, 2019 acquisition of Cropio.
+  - url: https://www.syngenta.com/media/media-releases/2025/syngenta-opens-cropwise-digital-platform-developers-co-innovate-and
+    type: PressRelease
+    note: >-
+      Describes a separate, newer 2025 "Cropwise Open Platform" developer
+      initiative across Syngenta's wider Cropwise portfolio, distinct from
+      the Cropio-lineage Operations API documented in this review.
+  - url: https://github.com/cropio
+    type: SourceCode
+    note: >-
+      GitHub organization publishing open-source client libraries
+      (cropio-ruby, cropio-1c, cropio-powerbi) that wrap the closed,
+      account-gated REST API.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or other push transport exists on Cropio's (Cropwise
+    Operations') own API. The entire documented surface is request/response
+    REST plus filtered HTTP-pull endpoints for near-real-time telematics data.
+    No AsyncAPI document was created because there is no server-push protocol
+    to model.
