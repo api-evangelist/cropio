@@ -150,6 +150,8 @@ apis:
     productivity/yield estimates and their history, used to close the loop from
     field work back to harvest results.
 common:
+- type: DomainSecurity
+  url: security/cropio-domain-security.yml
 - type: GitHubOrganization
   url: https://github.com/cropio
 - type: LinkedIn
