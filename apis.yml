@@ -113,6 +113,11 @@ apis:
   name: Cropio Scouting & Tasks API
   tags:
   - Scouting
+  - Task
+  - Field Scout Reports
+  - Plant Threats
+  tags_raw:
+  - Scouting
   - Tasks
   - Field Scout Reports
   - Plant Threats
