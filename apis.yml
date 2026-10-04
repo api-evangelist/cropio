@@ -40,6 +40,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cropio.png
+x-docs-platform: apiary
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-24
 tags:
 - Agriculture
 - AgTech
@@ -197,3 +200,8 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-status: acquired
+x-acquired-by: "Syngenta"
+x-acquired-date: '2019-09'
+x-status-source: "https://cropio.com/"
+x-status-evidence: "cropio.com redirects to operations.cropwise.com, Syngenta's Cropwise (probed 2026-10-03); Syngenta is not in the catalog (roadmap#814)"
