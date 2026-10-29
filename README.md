@@ -1,4 +1,4 @@
-# Cropio (cropio)
+# Cropio
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,128 +64,74 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Cropio was an independent Eastern European farm management and precision agriculture platform (fields, satellite/NDVI imagery, weather, scouting, machinery telematics, and yield) founded in 2013. Syngenta acquired Cropio in September 2019 and folded it into its Cropwise digital agriculture portfolio; the product now operates as **Cropwise Operations**, and `cropio.com` redirects to `operations.cropwise.com`.
+> **Acquired or rebranded.** This company was acquired, merged or renamed. Its API, if it still exists, is offered under another name. This profile is kept as a historical record and is not maintained or rated.
 
-## Operating status
+Cropio was an independent Eastern European farm management and precision agriculture platform (fields, satellite/NDVI imagery, weather, scouting, machinery telematics, and yield) founded in 2013. Syngenta acquired Cropio in September 2019 and folded it into its Cropwise digital agriculture portfolio; the product now operates as Cropwise Operations, and cropio.com redirects to operations.cropwise.com. The original Cropio API v3 was not shut down - it continues to run as the documented Cropwise Operations Platform API v3, reachable at operations.cropwise.com/api/v3 (the legacy cropio.com/api/v3 host has redirected there since April 1, 2022). It is a per-account HTTP JSON REST API (not a self-serve developer marketplace) - a Cropwise Operations login is required to obtain a USER_API_TOKEN, and there is no published self-signup API key flow or API-specific price list. Syngenta separately launched a broader "Cropwise Open Platform" for partners in 2025, which is a distinct, newer developer program outside the scope of this entry.
 
-- **Company:** Absorbed. Cropio no longer exists as an independent company or brand - it is now Cropwise Operations, part of Syngenta.
-- **Product:** Live and active. `https://cropio.com` returns a 302 redirect to `https://operations.cropwise.com/`, which is a working, actively marketed "all-in-one digital farming solution."
-- **API:** Live and unchanged in kind. The original **Cropio API v3** was not shut down - it continues to run as the documented **Cropwise Operations Platform API v3**, at `https://operations.cropwise.com/api/v3`. The legacy `https://cropio.com/api/v3` host has redirected to the new host since April 1, 2022, per Cropio's own migration notice in the docs.
-- **Access model:** This is a per-account HTTP JSON REST API, not a self-serve developer marketplace. A Cropwise Operations login is required to obtain a `USER_API_TOKEN` (via `POST /sign_in` or from account settings); there is no public API-key signup form and no published, API-specific price list.
-- **Separate, newer program:** In 2025 Syngenta announced a broader "Cropwise Open Platform" (`open-platform.cropwise.com`) for third-party developer co-innovation across its wider Cropwise portfolio. That is a distinct, newer initiative from the Cropio-lineage Operations API documented here and is out of scope for this entry.
+**Areas:** Agriculture · AgTech · Precision Agriculture · Farm Management · Satellite Imagery · NDVI · Weather · Telematics · Syngenta · Cropwise
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cropio/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cropio/refs/heads/main/apis.yml)
+## Cropio on APIs.io (historical record)
 
-## Tags
+Everything profiled for Cropio is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cropio/](https://apis.io/providers/cropio/)** — or go straight to one of the APIs or properties below.
 
-- Agriculture
-- AgTech
-- Precision Agriculture
-- Farm Management
-- Satellite Imagery
-- NDVI
-- Weather
-- Telematics
-- Syngenta
-- Cropwise
+### APIs (7)
 
-## Timestamps
+- [Cropio Fields API](https://apis.io/apis/cropio/cropio-fields-api/) — Create, list, get, update, and delete fields, field groups, field shapes (boundaries in multiple geo formats), and land parcels. Fields carry…
+- [Cropio Crops API](https://apis.io/apis/cropio/cropio-crops-api/) — Manage crops (name, season type, base crop, color scheme), seasons (year, start/end date), production cycles, and growth stage / growth scale tracking used…
+- [Cropio Satellite Imagery API](https://apis.io/apis/cropio/cropio-satellite-imagery-api/) — Read-only access to per-field and per-field-group satellite images - capture date, source satellite, cloud/cirrus/data coverage, and min/max/mean NDVI…
+- [Cropio Weather API](https://apis.io/apis/cropio/cropio-weather-api/) — Read-only weather station data (real and virtual stations) keyed by geoposition, including a rolling 24-hour hourly current_weather array (precipitation,…
+- [Cropio Scouting & Tasks API](https://apis.io/apis/cropio/cropio-scouting-and-tasks-api/) — Create and manage scouting tasks and manual tasks assigned to a field and a responsible user, plus the field scout reports, scout report points, and plant…
+- [Cropio Machinery & Telematics API](https://apis.io/apis/cropio/cropio-machinery-telematics-api/) — Manage machines, implements, and machine tasks (driver, work type, field, start/end time), plus GPS logger data - raw and hourly-aggregated positions,…
+- [Cropio Yield & Harvest API](https://apis.io/apis/cropio/cropio-yield-and-harvest-api/) — Read and write yield maps (per-field moisture/yield/applied property maps tied to a field work result), harvest weighings and transportations, and…
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Cropio Fields API
+#### Security (1)
 
-Create, list, get, update, and delete fields, field groups, field shapes (boundaries in multiple geo formats), and land parcels. Fields carry calculated/legal/tillable area, administrative location, and relations to crops, scouting reports, satellite images, and machine tasks.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://cropwiseoperations.docs.apiary.io/](https://cropwiseoperations.docs.apiary.io/)
-- **Base URL:** `https://operations.cropwise.com/api/v3`
+- [Cropio Domain Security](https://apis.io/security/cropio/cropio-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [API Reference](https://cropwiseoperations.docs.apiary.io/)
-- [SDK - cropio-ruby](https://github.com/cropio/cropio-ruby)
+Published plans, tiers and prices.
 
-### Cropio Crops API
+- [Cropio Plans Pricing](https://apis.io/plans/cropio/cropio-plans-pricing/)
 
-Manage crops (name, season type, base crop, color scheme), seasons (year, start/end date), production cycles, and growth stage / growth scale tracking used to plan and record what is planted on a field across a season.
+#### Rate limits (1)
 
-- **Human URL:** [https://cropwiseoperations.docs.apiary.io/](https://cropwiseoperations.docs.apiary.io/)
-- **Base URL:** `https://operations.cropwise.com/api/v3`
+Published request limits.
 
-#### Properties
+- [Cropio Rate Limits](https://apis.io/rate-limits/cropio/cropio-rate-limits/)
 
-- [API Reference](https://cropwiseoperations.docs.apiary.io/)
+#### FinOps (1)
 
-### Cropio Satellite Imagery API
+What the API costs to run, by operation.
 
-Read-only access to per-field and per-field-group satellite images - capture date, source satellite, cloud/cirrus/data coverage, and min/max/mean NDVI values - plus NDVI grid data for zoning and vegetation-health analysis.
+- [Cropio Finops](https://apis.io/finops/cropio/cropio-finops/)
 
-- **Human URL:** [https://cropwiseoperations.docs.apiary.io/](https://cropwiseoperations.docs.apiary.io/)
-- **Base URL:** `https://operations.cropwise.com/api/v3`
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [API Reference](https://cropwiseoperations.docs.apiary.io/)
-
-### Cropio Weather API
-
-Read-only weather station data (real and virtual stations) keyed by geoposition, including a rolling 24-hour hourly `current_weather` array (precipitation, air temperature, and related measurements) and historical weather items.
-
-- **Human URL:** [https://cropwiseoperations.docs.apiary.io/](https://cropwiseoperations.docs.apiary.io/)
-- **Base URL:** `https://operations.cropwise.com/api/v3`
-
-#### Properties
-
-- [API Reference](https://cropwiseoperations.docs.apiary.io/)
-
-### Cropio Scouting & Tasks API
-
-Create and manage scouting tasks and manual tasks assigned to a field and a responsible user, plus the field scout reports, scout report points, and plant threat findings recorded against them, and agri-work plans used to schedule field operations.
-
-- **Human URL:** [https://cropwiseoperations.docs.apiary.io/](https://cropwiseoperations.docs.apiary.io/)
-- **Base URL:** `https://operations.cropwise.com/api/v3`
-
-#### Properties
-
-- [API Reference](https://cropwiseoperations.docs.apiary.io/)
-
-### Cropio Machinery & Telematics API
-
-Manage machines, implements, and machine tasks (driver, work type, field, start/end time), plus GPS logger data - raw and hourly-aggregated positions, speed, and distance per machine - polled over HTTP with a required date/time filter. Marked "testing stage" by Cropio in the source docs.
-
-- **Human URL:** [https://cropwiseoperations.docs.apiary.io/](https://cropwiseoperations.docs.apiary.io/)
-- **Base URL:** `https://operations.cropwise.com/api/v3`
-
-#### Properties
-
-- [API Reference](https://cropwiseoperations.docs.apiary.io/)
-- [SDK - cropio-powerbi](https://github.com/cropio/cropio-powerbi)
-
-### Cropio Yield & Harvest API
-
-Read and write yield maps (per-field moisture/yield/applied property maps tied to a field work result), harvest weighings and transportations, and productivity/yield estimates and their history, used to close the loop from field work back to harvest results.
-
-- **Human URL:** [https://cropwiseoperations.docs.apiary.io/](https://cropwiseoperations.docs.apiary.io/)
-- **Base URL:** `https://operations.cropwise.com/api/v3`
-
-#### Properties
-
-- [API Reference](https://cropwiseoperations.docs.apiary.io/)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/cropio)
-- [LinkedIn](https://www.linkedin.com/company/cropio)
 - [Website](https://operations.cropwise.com)
 - [Documentation](https://cropwiseoperations.docs.apiary.io/)
-- [Plans](plans/cropio-plans-pricing.yml)
-- [Rate Limits](rate-limits/cropio-rate-limits.yml)
-- [Fin Ops](finops/cropio-finops.yml)
+- [GitHub](https://github.com/cropio)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Not rated** — this company is recorded as acquired or rebranded, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cropio: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cropio/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
